@@ -1,6 +1,6 @@
 # Stat-Rechner Guns of Glory
 
-Ein kleiner Stat-Rechner für das Mobilegame [Guns of Glory](https://www.gunsofglory.de/)!
+Ein kleiner Stat-Rechner für das Mobilegame [Guns of Glory](https://play.google.com/store/apps/details?id=com.diandian.gog)!
 
 ## Getting Started
 
