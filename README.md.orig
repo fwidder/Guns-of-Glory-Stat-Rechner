@@ -31,7 +31,11 @@ git clone https://github.com/fwidder/Guns-of-Glory-Stat-Rechner.git
 Then go to the cloned Folder and install the Dependencies with Maven:
 
 ```shell script
+<<<<<<< HEAD
+cd DomeGameCalc
+=======
 cd Guns-of-Glory-Stat-Rechner
+>>>>>>> master
 mvn clean install
 ```
 
