@@ -1,6 +1,6 @@
-# Stat-Rechner für Dome
+# Stat-Rechner Guns of Glory
 
-Ein kleiner Stat-Rechner für Dome's Mobilegame!
+Ein kleiner Stat-Rechner für das Mobilegame [Guns of Glory](https://www.gunsofglory.de/)!
 
 ## Getting Started
 
@@ -25,13 +25,13 @@ A step by step series of examples that tell you how to get a development env run
 First clone the Repository:
 
 ```shell script
-git clone https://github.com/fwidder/DomeGameCalc.git
+git clone https://github.com/fwidder/Guns-of-Glory-Stat-Rechner.git
 ```
 
 Then go to the cloned Folder and install the Dependencies with Maven:
 
 ```shell script
-cd DomeGameCal
+cd Guns-of-Glory-Stat-Rechner
 mvn clean install
 ```
 
