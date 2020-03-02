@@ -12,7 +12,7 @@
     <artifactId>statrechner</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>statrechner</name>
-    <description>Statrechner für Domes Mobile Game</description>
+    <description>Stat-Rechner für Guns of Glory</description>
 
     <properties>
         <java.version>11</java.version>
