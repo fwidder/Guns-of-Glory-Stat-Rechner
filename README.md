@@ -31,7 +31,7 @@ git clone https://github.com/fwidder/DomeGameCalc.git
 Then go to the cloned Folder and install the Dependencies with Maven:
 
 ```shell script
-cd DomeGameCal
+cd DomeGameCalc
 mvn clean install
 ```
 
