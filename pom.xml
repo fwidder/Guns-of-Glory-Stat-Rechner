@@ -57,6 +57,13 @@
             <version>4.8.44</version>
         </dependency>
 
+        <!-- Charts -->
+        <dependency>
+            <groupId>org.knowm.xchart</groupId>
+            <artifactId>xchart</artifactId>
+            <version>3.6.1</version>
+        </dependency>
+
         <!-- Test and Dev -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
