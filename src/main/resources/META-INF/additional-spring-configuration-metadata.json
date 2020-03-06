@@ -3,7 +3,22 @@
     {
       "name": "springdoc.swagger-ui.path",
       "type": "java.lang.String",
-      "description": "Startpath for Swagger."
+      "description": "Start Path for Swagger."
+    },
+    {
+      "name": "app.demo",
+      "type": "java.lang.Boolean",
+      "description": "Define if App runs in Demo Mode."
+    },
+    {
+      "name": "app.demo.pass",
+      "type": "java.lang.String",
+      "description": "Password for Demo User."
+    },
+    {
+      "name": "app.demo.user",
+      "type": "java.lang.String",
+      "description": "Username for Demo User."
     }
   ]
 }
