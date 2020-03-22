@@ -45,7 +45,7 @@ public class ChartService {
         return file;
     }
 
-    private void createHistoryChart(Player player, File file, List<Long> goldHistory, List<Long> wheatHistory, List<Long> woodHistory, List<Date> timeHistory) {
+    private void createHistoryChart(Player player, File file, List<Long> goldHistory, List<Long> wheatHistory, List<Long> woodHistory, List<Date> timeHistory) throws IOException {
         // Create Chart
         XYChart chart = new XYChartBuilder().width(800).height(600).title("Resourcen von " + player.getName()).xAxisTitle("Zeit").yAxisTitle("Menge").theme(Styler.ChartTheme.XChart).build();
 
