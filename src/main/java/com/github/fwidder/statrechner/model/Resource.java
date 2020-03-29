@@ -4,7 +4,8 @@ import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
@@ -25,12 +26,7 @@ public class Resource {
     @Builder.Default
     private Long quantity = 0L;
 
-    @Column
-    @NotNull
-    private String name;
-
-    @Column
     @OneToMany
     @Builder.Default
-    private List<ResourcePackage> resourcePackages = new ArrayList<ResourcePackage>();
+    private List<ResourcePackage> resourcePackages = new ArrayList<>();
 }

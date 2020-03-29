@@ -3,7 +3,6 @@ package com.github.fwidder.statrechner.model;
 import lombok.*;
 
 import javax.persistence.*;
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
@@ -23,19 +22,19 @@ public class PlayerResources {
 
     @NotNull
     @OneToOne
-    private Resource food = Resource.builder().name("Food").build();
+    private Resource food = Resource.builder().build();
 
     @NotNull
     @OneToOne
-    private Resource wood = Resource.builder().name("Wood").build();
+    private Resource wood = Resource.builder().build();
 
     @NotNull
     @OneToOne
-    private Resource iron = Resource.builder().name("Iron").build();
+    private Resource iron = Resource.builder().build();
 
     @NotNull
     @OneToOne
-    private Resource silver = Resource.builder().name("Silver").build();
+    private Resource silver = Resource.builder().build();
 
     @NotNull
     @ManyToOne(optional = false)

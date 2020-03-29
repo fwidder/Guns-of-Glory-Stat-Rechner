@@ -2,8 +2,11 @@ package com.github.fwidder.statrechner.controller.rest;
 
 import com.github.fwidder.statrechner.dao.PlayerRepository;
 import com.github.fwidder.statrechner.dao.PlayerResourceRepository;
+import com.github.fwidder.statrechner.dao.ResourcePackageRepository;
+import com.github.fwidder.statrechner.dao.ResourceRepository;
 import com.github.fwidder.statrechner.model.Player;
 import com.github.fwidder.statrechner.model.PlayerResources;
+import com.github.fwidder.statrechner.model.ResourcePackage;
 import com.github.fwidder.statrechner.util.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,6 +21,13 @@ public class PlayerResourcesRestController {
 
     @Autowired
     private PlayerResourceRepository playerResourceRepository;
+
+    @Autowired
+    private ResourceRepository resourceRepository;
+
+    @Autowired
+    private ResourcePackageRepository resourcePackageRepository;
+
     @Autowired
     private PlayerRepository playerRepository;
 
@@ -47,13 +57,38 @@ public class PlayerResourcesRestController {
             throw new AssertionError("ID in Path and ID in PlayerResources must be equal!");
         if (findById(id) == null)
             throw new ObjectNotFoundException("Object with ID " + id + " does not exist! To create a new Object use POST!");
-        return playerResourceRepository.save(playerResources);
+        return savePlayerResources(playerResources);
     }
 
     @PostMapping(value = "/", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
     public PlayerResources post(@RequestBody final PlayerResources playerResources) {
         playerResources.setId(null);
+
+        return savePlayerResources(playerResources);
+    }
+
+    private PlayerResources savePlayerResources(@RequestBody PlayerResources playerResources) {
+        Iterable<ResourcePackage> foodPackages = resourcePackageRepository.saveAll(playerResources.getFood().getResourcePackages());
+        playerResources.getFood().getResourcePackages().clear();
+        foodPackages.forEach(playerResources.getFood().getResourcePackages()::add);
+        playerResources.setFood(resourceRepository.save(playerResources.getFood()));
+
+        Iterable<ResourcePackage> woodPackages = resourcePackageRepository.saveAll(playerResources.getWood().getResourcePackages());
+        playerResources.getWood().getResourcePackages().clear();
+        woodPackages.forEach(playerResources.getWood().getResourcePackages()::add);
+        playerResources.setWood(resourceRepository.save(playerResources.getWood()));
+
+        Iterable<ResourcePackage> ironPackages = resourcePackageRepository.saveAll(playerResources.getIron().getResourcePackages());
+        playerResources.getIron().getResourcePackages().clear();
+        ironPackages.forEach(playerResources.getIron().getResourcePackages()::add);
+        playerResources.setIron(resourceRepository.save(playerResources.getIron()));
+
+        Iterable<ResourcePackage> silverPackages = resourcePackageRepository.saveAll(playerResources.getSilver().getResourcePackages());
+        playerResources.getSilver().getResourcePackages().clear();
+        silverPackages.forEach(playerResources.getSilver().getResourcePackages()::add);
+        playerResources.setSilver(resourceRepository.save(playerResources.getSilver()));
+
         return playerResourceRepository.save(playerResources);
     }
 }
