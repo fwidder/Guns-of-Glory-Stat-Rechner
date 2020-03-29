@@ -64,7 +64,8 @@ public class DemoConfig implements CommandLineRunner {
                 .authorities(authoritySet)
                 .build();
 
-        userRepository.save(user);
+        if(userRepository.count()==0)
+            userRepository.save(user);
 
         Iterable<User> users = userRepository.findAll();
         LOG.info("Users:");

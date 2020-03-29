@@ -3,6 +3,7 @@ package com.github.fwidder.statrechner.service;
 import com.github.fwidder.statrechner.dao.PlayerResourceRepository;
 import com.github.fwidder.statrechner.model.Player;
 import com.github.fwidder.statrechner.model.PlayerResources;
+import com.github.fwidder.statrechner.util.ResourceUtil;
 import org.knowm.xchart.BitmapEncoder;
 import org.knowm.xchart.XYChart;
 import org.knowm.xchart.XYChartBuilder;
@@ -26,26 +27,28 @@ public class ChartService {
 
     public File createResourceChartForPlayer(Player player) throws IOException {
         File file = File.createTempFile("TMP_ResourceChartForPlayer_" + player.getName() + "_", "_.png");
-        List<Long> goldHistory = new ArrayList<>();
-        List<Long> wheatHistory = new ArrayList<>();
+        List<Long> silverHistory = new ArrayList<>();
+        List<Long> foodHistory = new ArrayList<>();
         List<Long> woodHistory = new ArrayList<>();
+        List<Long> ironHistory = new ArrayList<>();
         List<Date> timeHistory = new ArrayList<>();
 
         Iterable<PlayerResources> history = playerResourceRepository.findByPlayerOrderByTimestampAsc(player);
 
         history.forEach(playerResources -> {
-            goldHistory.add(playerResources.getGold());
-            wheatHistory.add(playerResources.getWheat());
-            woodHistory.add(playerResources.getWood());
+            woodHistory.add(ResourceUtil.resourceSum(playerResources.getWood()));
+            foodHistory.add(ResourceUtil.resourceSum(playerResources.getFood()));
+            ironHistory.add(ResourceUtil.resourceSum(playerResources.getIron()));
+            silverHistory.add(ResourceUtil.resourceSum(playerResources.getSilver()));
             timeHistory.add(Date.from(playerResources.getTimestamp().toInstant(ZoneOffset.UTC)));
         });
 
-        createHistoryChart(player, file, goldHistory, wheatHistory, woodHistory, timeHistory);
+        createHistoryChart(player, file, woodHistory, foodHistory, ironHistory,silverHistory , timeHistory);
 
         return file;
     }
 
-    private void createHistoryChart(Player player, File file, List<Long> goldHistory, List<Long> wheatHistory, List<Long> woodHistory, List<Date> timeHistory) throws IOException {
+    private void createHistoryChart(Player player, File file, List<Long> woodHistory, List<Long> foodHistory, List<Long> ironHistory, List<Long> silverHistory, List<Date> timeHistory) throws IOException {
         // Create Chart
         XYChart chart = new XYChartBuilder().width(800).height(600).title("Resourcen von " + player.getName()).xAxisTitle("Zeit").yAxisTitle("Menge").theme(Styler.ChartTheme.XChart).build();
 
@@ -56,9 +59,10 @@ public class ChartService {
         chart.getStyler().setDefaultSeriesRenderStyle(XYSeries.XYSeriesRenderStyle.Line);
 
         // Series
-        chart.addSeries("Gold", timeHistory, goldHistory);
-        chart.addSeries("Weizen", timeHistory, wheatHistory);
-        chart.addSeries("Holz", timeHistory, woodHistory);
+        chart.addSeries("Food", timeHistory, foodHistory);
+        chart.addSeries("Iron", timeHistory, ironHistory);
+        chart.addSeries("Wood", timeHistory, woodHistory);
+        chart.addSeries("Silver", timeHistory, silverHistory);
 
         BitmapEncoder.saveBitmap(chart, file.getAbsolutePath(), BitmapEncoder.BitmapFormat.PNG);
     }

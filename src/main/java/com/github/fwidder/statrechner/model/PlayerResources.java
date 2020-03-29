@@ -21,20 +21,21 @@ public class PlayerResources {
     @GeneratedValue
     private Long id;
 
-    @Column
     @NotNull
-    @Min(value = 0, message = "Your amount of Gold can't be lower then zero!")
-    private Long gold;
+    @OneToOne
+    private Resource food = Resource.builder().name("Food").build();
 
-    @Column
     @NotNull
-    @Min(value = 0, message = "Your amount of Wheat can't be lower then zero!")
-    private Long wheat;
+    @OneToOne
+    private Resource wood = Resource.builder().name("Wood").build();
 
-    @Column
     @NotNull
-    @Min(value = 0, message = "Your amount of Wood can't be lower then zero!")
-    private Long wood;
+    @OneToOne
+    private Resource iron = Resource.builder().name("Iron").build();
+
+    @NotNull
+    @OneToOne
+    private Resource silver = Resource.builder().name("Silver").build();
 
     @NotNull
     @ManyToOne(optional = false)
