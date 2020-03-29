@@ -10,6 +10,7 @@ import org.knowm.xchart.XYChartBuilder;
 import org.knowm.xchart.XYSeries;
 import org.knowm.xchart.style.Styler;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.io.File;
@@ -24,6 +25,14 @@ public class ChartService {
 
     @Autowired
     private PlayerResourceRepository playerResourceRepository;
+
+    @Value("${app.chart.dateFormat}")
+    String dateFormat;
+
+    public ChartService() {
+        if (dateFormat == null || dateFormat.isBlank())
+            dateFormat = "yyyy-MM-dd HH:mm";
+    }
 
     public File createResourceChartForPlayer(Player player) throws IOException {
         File file = File.createTempFile("TMP_ResourceChartForPlayer_" + player.getName() + "_", "_.png");
@@ -43,7 +52,7 @@ public class ChartService {
             timeHistory.add(Date.from(playerResources.getTimestamp().toInstant(ZoneOffset.UTC)));
         });
 
-        createHistoryChart(player, file, woodHistory, foodHistory, ironHistory,silverHistory , timeHistory);
+        createHistoryChart(player, file, woodHistory, foodHistory, ironHistory, silverHistory, timeHistory);
 
         return file;
     }
@@ -55,7 +64,7 @@ public class ChartService {
         // Customize Chart
         chart.getStyler().setLegendPosition(Styler.LegendPosition.InsideNW);
         chart.getStyler().setAxisTitlesVisible(false);
-        chart.getStyler().setDatePattern("yyyy-MM-dd HH:mm");
+        chart.getStyler().setDatePattern(dateFormat);
         chart.getStyler().setDefaultSeriesRenderStyle(XYSeries.XYSeriesRenderStyle.Line);
 
         // Series

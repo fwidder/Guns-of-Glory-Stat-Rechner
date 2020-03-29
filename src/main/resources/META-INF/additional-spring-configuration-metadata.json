@@ -19,6 +19,11 @@
       "name": "app.demo.user",
       "type": "java.lang.String",
       "description": "Username for Demo User."
+    },
+    {
+      "name": "app.chart.dateFormat",
+      "type": "java.lang.String",
+      "description": "DateFormat for X-Axis in Time-Charts."
     }
   ]
 }
