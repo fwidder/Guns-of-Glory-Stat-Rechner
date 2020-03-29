@@ -26,6 +26,11 @@ public class Resource {
     @Builder.Default
     private Long quantity = 0L;
 
+    @Column
+    @NotNull
+    @Builder.Default
+    private Long protection = 0L;
+
     @OneToMany
     @Builder.Default
     private List<ResourcePackage> resourcePackages = new ArrayList<>();
