@@ -18,7 +18,7 @@ import java.util.Set;
 
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
-    Logger log = LoggerFactory.getLogger(UserDetailsServiceImpl.class);
+    private final Logger log = LoggerFactory.getLogger(UserDetailsServiceImpl.class);
 
     @Autowired
     private UserRepository userRepository;
@@ -36,14 +36,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         User user = userOpt.get();
 
         Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
-        user.getAuthorities().forEach(a -> {
-            grantedAuthorities.add(new GrantedAuthority() {
-                @Override
-                public String getAuthority() {
-                    return a.getName();
-                }
-            });
-        });
+        user.getAuthorities().forEach(a -> grantedAuthorities.add((GrantedAuthority) a::getName));
 
 
         return org.springframework.security.core.userdetails.User.builder()
