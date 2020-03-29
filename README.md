@@ -47,6 +47,7 @@ mvn spring-boot:run
 | [/swagger](http://localhost:8080/swagger) | Documentation of the REST-API |
 | [/rest/*](http://localhost:8080/rest/)    | Rest-Endpoints                |
 | [/api/*](http://localhost:8080/api/)      | API-Endpoints                 |
+| [/web/*](http://localhost:8080/web/)      | Web-Endpoints                 |
 
 # Needs to be filled from here on!
 
