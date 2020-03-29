@@ -18,29 +18,23 @@ import java.util.Set;
 @Component
 public class DemoConfig implements CommandLineRunner {
 
+    private static final Logger LOG =
+            LoggerFactory.getLogger(DemoConfig.class);
     @Autowired
     UserRepository userRepository;
-
     @Autowired
     AuthorityRepository authorityRepository;
-
     @Autowired
     PasswordEncoder passwordEncoder;
-
     @Value("${app.demo}")
     String demo;
-
     @Value("${app.demo.user}")
     String username;
-
     @Value("${app.demo.pass}")
     String pass;
 
-    private static final Logger LOG =
-            LoggerFactory.getLogger(DemoConfig.class);
-
     @Override
-    public void run(String... args) throws Exception {
+    public void run(String... args) {
         if (demo == null || demo.isEmpty() || !demo.equalsIgnoreCase("true")) {
             LOG.info("Demo Mode is disabled!");
             return;
@@ -64,13 +58,11 @@ public class DemoConfig implements CommandLineRunner {
                 .authorities(authoritySet)
                 .build();
 
-        if(userRepository.count()==0)
+        if (userRepository.count() == 0)
             userRepository.save(user);
 
         Iterable<User> users = userRepository.findAll();
         LOG.info("Users:");
-        users.forEach(u -> {
-            LOG.info("\t{} -> {}", u.getId(), u.getUsername());
-        });
+        users.forEach(u -> LOG.info("\t{} -> {}", u.getId(), u.getUsername()));
     }
 }

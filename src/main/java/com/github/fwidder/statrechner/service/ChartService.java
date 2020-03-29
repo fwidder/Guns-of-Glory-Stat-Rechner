@@ -23,11 +23,10 @@ import java.util.List;
 @Service
 public class ChartService {
 
-    @Autowired
-    private PlayerResourceRepository playerResourceRepository;
-
     @Value("${app.chart.dateFormat}")
     String dateFormat;
+    @Autowired
+    private PlayerResourceRepository playerResourceRepository;
 
     public ChartService() {
         if (dateFormat == null || dateFormat.isBlank())
