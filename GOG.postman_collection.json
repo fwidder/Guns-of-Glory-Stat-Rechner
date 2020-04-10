@@ -1,0 +1,82 @@
+{
+  "info": {
+    "_postman_id": "36a21f9a-b98a-4455-b09f-b283cd938c20",
+    "name": "GOG",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Echo Test",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "id": "24fb54c6-9aac-4b8b-ac93-55203bd42bbd",
+            "exec": [
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "protocolProfileBehavior": {
+        "followOriginalHttpMethod": true,
+        "followAuthorizationHeader": true,
+        "removeRefererHeaderOnRedirect": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "jwtToken",
+            "value": "token_eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c2VyIiwiZXhwIjoxNTg2NTQzNTQ2LCJpYXQiOjE1ODY1MjU1NDZ9.A8i7eU4jSFC4t5gdg1P_YZfI2Ijb4Vf4FLHHBVAowHCVxU-ZGt651eS6NHuRWL5lX6ic1t6M208eNJ_jXlih0g",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "localhost:8080/rest/v01/echo/ECHO-TEXT",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "rest",
+            "v01",
+            "echo",
+            "ECHO-TEXT"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "JWT Login",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n\t\"username\" : \"user\",\n\t\"password\": \"pass\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "localhost:8080/login/jwtLogin",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "login",
+            "jwtLogin"
+          ]
+        }
+      },
+      "response": []
+    }
+  ],
+  "protocolProfileBehavior": {}
+}

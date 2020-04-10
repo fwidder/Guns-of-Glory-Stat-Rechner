@@ -1,0 +1,42 @@
+# App Settings
+app:
+  chart:
+    dateFormat: MM-dd HH:mm
+  demo: true
+  demo.pass: pass
+  demo.user: user
+
+#JWT Settings
+jwt:
+  secret: MySecret
+
+# Server Settings
+server:
+  port: 8080
+
+# Spring Settings
+spring:
+  application:
+    name: Guns-of-Glory-Stat-Rechner
+  # DB Settings
+  datasource:
+    driverClassName: org.h2.Driver
+    password: password
+    url: jdbc:h2:mem:testdb
+    username: sa
+  h2:
+    console:
+      path: /h2-console
+      settings:
+        trace: false
+        web-allow-others: false
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: create-drop
+    open-in-view: true
+
+# Swagger Settings
+springdoc:
+  swagger-ui:
+    path: /swagger

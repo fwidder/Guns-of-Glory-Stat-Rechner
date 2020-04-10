@@ -1,4 +1,4 @@
-package com.github.fwidder.statrechner.controller.rest;
+package com.github.fwidder.statrechner.controller.rest.v01;
 
 import com.github.fwidder.statrechner.dao.PlayerRepository;
 import com.github.fwidder.statrechner.dao.PlayerResourceRepository;
@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("rest/PlayerResources")
+@RequestMapping("rest/v01/PlayerResources")
 public class PlayerResourcesRestController {
 
     @Autowired

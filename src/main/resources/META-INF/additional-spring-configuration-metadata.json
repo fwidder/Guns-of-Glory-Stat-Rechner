@@ -24,6 +24,11 @@
       "name": "app.chart.dateFormat",
       "type": "java.lang.String",
       "description": "DateFormat for X-Axis in Time-Charts."
+    },
+    {
+      "name": "jwt.secret",
+      "type": "java.lang.String",
+      "description": "Secret for JWT Encryption."
     }
   ]
 }

@@ -1,4 +1,4 @@
-package com.github.fwidder.statrechner.controller.rest;
+package com.github.fwidder.statrechner.controller.rest.v01;
 
 import com.github.fwidder.statrechner.dao.PlayerRepository;
 import com.github.fwidder.statrechner.model.Player;
@@ -9,7 +9,7 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("rest/Player")
+@RequestMapping("rest/v01/Player")
 public class PlayerRestController {
 
     @Autowired
